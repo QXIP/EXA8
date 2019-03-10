@@ -32,11 +32,13 @@ Once the QXIP repository is installed, packages can be installed with `apt`
 apt update
 apt install heplify
 ```
-## Links
+## Links & How-Tos
 ### DEVELOPERS
 See [Cross-Compilation and Development](https://github.com/lmangani/EXA8/blob/master/crosscompile.md)
-### HARDWARE
-See [Hardware Notes](https://github.com/lmangani/EXA8/blob/master/hardware.md)
+### BRIDGE OPTIONS
+See [Bridging](https://github.com/lmangani/EXA8/blob/master/bridging.md)
+### HARDWARE SPECS
+See [Hardware](https://github.com/lmangani/EXA8/blob/master/hardware.md)
 
 
 
