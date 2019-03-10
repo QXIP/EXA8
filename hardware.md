@@ -1,4 +1,4 @@
-<img src="http://cubro.org/images/EXA8_Banner.jpg">
+<img src="http://cubro.org/images/EXA8_Banner.jpg" width=500>
 
 # CURBO EXA8
 ## Hardware Features
