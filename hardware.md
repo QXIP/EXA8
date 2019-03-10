@@ -1,7 +1,6 @@
 <img src="http://cubro.org/images/EXA8_Banner.jpg" width=500>
 
-# CURBO EXA8
-## Hardware Features
+## Hardware Specs
 ```
 4 Core/1,5 GHz Cavium ARM64 CPU
 64 GB RAM
