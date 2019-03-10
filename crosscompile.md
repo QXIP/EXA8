@@ -42,7 +42,7 @@ gem install --no-ri --no-rdoc fpm
 Compile and Install your code to a custom directory, later used to create the package
 ```
 mkdir /tmp/mycode
-make && make DESTDIR=/tmp/mycode install```
+make && make DESTDIR=/tmp/mycode install
 ```
 
 ##### Create a Package
