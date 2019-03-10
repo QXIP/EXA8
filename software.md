@@ -26,5 +26,5 @@ curl -s https://packagecloud.io/install/repositories/qxip/cubro-pub/script.deb.s
 Once the QXIP repository is installed, packages can be installed with `apt`
 ```
 apt update
-apt install heplify
+apt install tshark
 ```
