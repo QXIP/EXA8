@@ -1,7 +1,6 @@
 <img src="http://cubro.org/images/EXA8_Banner.jpg" width=500>
 
-# CUBRO EXA8
-## Cross-Compiling for EXA8
+## Cross-Compiling for EXA8/ARM64
 The EXA8 ships by default with OS Ubuntu Xenial for ARM64. Developers can easily cross-compile software for the platform using Docker and the `arm64v8/ubuntu:xenial` image
 
 ### QEMU
