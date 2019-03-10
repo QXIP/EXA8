@@ -38,6 +38,13 @@ gpioset <gpio_pin> set 0
 gpioset <gpio_pin> set 1
 ```
 
+###### Disable Bypass Mode on GE 1-8
+```
+gpioset 32 set 1
+gpioset 33 set 1
+gpioset 34 set 1
+gpioset 35 set 1
+```
 
 ## ACTIVE
 When BYPASS mode is disabled, the integrated system can be configured to handle packets.
