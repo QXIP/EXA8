@@ -1,4 +1,4 @@
-<img src="http://cubro.org/images/EXA8_Banner.jpg">
+<img src="http://cubro.org/images/EXA8_Banner.jpg" width=500>
 
 
 # Cubro EXA8
