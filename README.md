@@ -5,7 +5,7 @@
 The EXA8 is a compact multi-application device which can be used for aggregation, filtering and capturing of network traffic in real-time powered by an integrated onboard arm64 platform albe to run standard and custom software.
 
 ## QXIP + EXA8
-QXIP maintains and distributes a number of Ubuntu:Xenial packages for the EXA8 platform through a public repository, including:
+QXIP maintains and distributes ubuntu:xenial packages for the EXA8 ARM64 platform through its repositories, including:
 
 * `HEPlify`, `HEPlify-Server`
 * `HEPAgent`, `CaptAgent`
