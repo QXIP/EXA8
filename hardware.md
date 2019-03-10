@@ -1,3 +1,5 @@
+<img src="http://cubro.org/images/EXA8_Banner.jpg">
+
 # CURBO EXA8
 ## Hardware Features
 ```
