@@ -16,6 +16,7 @@ The Cubro EXA8 ships with the flagship sub-millisecond passive Bridge, verticall
 *NOTE: When running in BYPASS mode, no packets will be visible by the integrated platform!*
 
 
+
 #### Enable/Disable Bypass Mode
 The interface for each pair are controlled by dedicated GPIO pins
 
@@ -46,6 +47,12 @@ The following examples illustrates a simple bridge between interfaces `lan1` and
 <img src=https://user-images.githubusercontent.com/1423657/54088541-56e03880-435f-11e9-9a7b-2722fc14c293.png width=200>
 
 *NOTE: Any interface and GPIO changes should be applied on each boot to avoid bypass default mode!* 
+
+###### Logical Interface
+The interface `enp5s0f1` is the logical interface to the CPU. It needs tobe UP to enable any traffic flow. 
+```
+ifconfig enp5s0f1 up
+```
 
 ###### Create a veth and br pair
 ```
