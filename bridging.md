@@ -3,6 +3,11 @@
 
 # EXA8 BRIDGE
 
+| lan1  	| lan3  	| lan5  	| lan7  	|
+|---	|---	|---	|---	|
+| lan2  	| lan4  	| lan6  	| lan8  	|
+
+
 ## SWITCH MODES
 The Cubro EXA8 ships with the flagship sub-millisecond passive Bridge, vertically linking all interface pairs by default.
 
