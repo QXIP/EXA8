@@ -1,0 +1,74 @@
+#!/bin/bash
+
+isDigit()
+{
+	expr $1 + 0 &>/dev/null
+	if [[ $? == 0 ]] ;then
+		return 1
+	else
+		return 0
+	fi
+}
+
+use()
+{	
+	echo "use:"
+	echo "    $0 gpio_pin dir in"
+	echo "    $0 gpio_pin dir out"
+	echo "    $0 gpio_pin set 0"
+	echo "    $0 gpio_pin set 1"
+}
+
+exportgpio()
+{
+	gpio=`echo "464+$1" | bc`
+	if [ ! -d "/sys/class/gpio/gpio$gpio" ];then
+		echo $gpio > /sys/class/gpio/export
+	fi
+	echo $gpio
+}
+
+if [[ $1 == "" ]] || [[ $1 == "--help" ]] ;then
+	use
+	exit 1
+fi
+
+isDigit $1
+if [[ $?  == 0 ]] ;then
+	echo "ERROR : gpio_pin must be Digit"
+	use
+	exit 1	
+fi
+
+if [[ "$2" != "dir" && "$2" != "set" ]] ;then
+	echo "ERROR : opration must be 'dir' or 'set'"
+	use
+	exit 1
+fi
+
+if [[ "$2" == "dir" ]] ;then
+	if [[ "$3" != "in" && "$3" != "out" ]] ;then
+		echo "ERROR : dir param must be 'in' or 'out' "
+		use
+		exit 1
+	else
+		gpio=`exportgpio $1`
+		echo "set $gpio dir is $3"
+		echo $3 > /sys/class/gpio/gpio$gpio/direction
+	fi
+fi
+
+if [[ "$2" == "set" ]] ;then
+	if [[ "$3" != "0" && "$3" != "1" ]] ;then
+		echo "ERROR : set value must be 0 or 1"
+		use
+		exit 1
+	else
+		gpio=`exportgpio $1`
+		echo "set $gpio value is $3"
+		echo out > /sys/class/gpio/gpio$gpio/direction
+		echo $3 > /sys/class/gpio/gpio$gpio/value
+	fi
+fi
+
+
