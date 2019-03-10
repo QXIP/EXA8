@@ -7,12 +7,18 @@ The EXA8 is a compact multi-application device which can be used for aggregation
 ## QXIP + EXA8
 QXIP maintains and distributes ubuntu:xenial packages for the EXA8 ARM64 platform through its repositories, including:
 
+#### Applications
 * `HEPlify`, `HEPlify-Server`
 * `HEPAgent`, `CaptAgent`
-* `peaFowl`
-* `LibUV`
 * `ngrep`
 * `tshark`
+#### Libraries
+* `peaFowl`
+* `libUV`
+* `libzmq`
+* `libnuma`
+
+-----------
 
 ### Repository Installation
 From your EXA8 Unit, execute the following command as `root`:
@@ -26,10 +32,10 @@ Once the QXIP repository is installed, packages can be installed with `apt`
 apt update
 apt install heplify
 ```
-
-## DEV
+## Links
+### DEVELOPERS
 See [Cross-Compilation and Development](https://github.com/lmangani/EXA8/blob/master/crosscompile.md)
-## HARDWARE
+### HARDWARE
 See [Hardware Notes](https://github.com/lmangani/EXA8/blob/master/hardware.md)
 
 
