@@ -56,7 +56,7 @@ The following examples illustrates a simple bridge between interfaces `lan1` and
 *NOTE: Any interface and GPIO changes should be applied on each boot to avoid bypass default mode!* 
 
 ###### Logical Interface
-The interface `enp5s0f1` is the logical interface to the CPU. It needs tobe UP to enable any traffic flow. 
+The interface `enp5s0f1` is the logical interface to the CPU. It needs to be UP to enable any traffic flow. 
 ```
 ifconfig enp5s0f1 up
 ```
