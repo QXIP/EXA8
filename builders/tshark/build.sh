@@ -22,10 +22,9 @@ cd wireshark
 mkdir build
 cd build
 cmake -DBUILD_wireshark=0 ../
-./configure --disable-glibtest --disable-plugins --enable-static --disable-shared --enable-tshark --disable-wireshark --disable-gtktest --disable-glibtest --disable-editcap --disable-capinfos --disable-mergecap --disable-text2pcap --disable-idl2wrs --disable-dftest --disable-randpkt --enable-dumpcap --disable-rawshark
 
 make
-make install $TMP_DIR
+DESTDIR=$TMP_DIR make install
 
 if [ $? -eq 0 ]
 then
@@ -38,7 +37,7 @@ fi
 apt-get -y install ruby ruby-dev rubygems build-essential
 gem install --no-ri --no-rdoc fpm
 
-fpm -s dir -t deb -C ${TMP_BUILD} \
+fpm -s dir -t deb -C ${TMP_DIR} \
 	--name ${PROJECT_NAME} --version ${VERSION_PROJECT}  -p "${VERSION_NAME}_${VERSION_PROJECT}-${INV}.${OS}.${ARCH}.deb" \
 	--iteration 1 --deb-no-default-config-files --description ${PROJECT_NAME} .
 
