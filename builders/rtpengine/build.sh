@@ -23,7 +23,7 @@ cd rtpengine
 #mk-build-deps -i
 dpkg-buildpackage -d
 
-#mkdir "$TMP_DIR"
+mkdir "$TMP_DIR"
 #make install ${TMP_DIR}
 
 if [ $? -eq 0 ]
@@ -35,6 +35,6 @@ else
 fi
 
 ls -alF ../*.deb
-cp -v ../*.deb ${TMP_DIR}
+cp -v ../*.deb /tmp/build
 
 
