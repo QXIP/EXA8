@@ -28,3 +28,17 @@ Once the QXIP repository is installed, packages can be installed with `apt`
 apt update
 apt install tshark
 ```
+
+----------
+### Supported Languages
+#### GO
+```
+sudo add-apt-repository ppa:gophers/archive
+sudo apt-get update
+sudo apt-get install golang-1.7
+```
+
+#### NodeJS
+```
+sudo apt-get install nodejs
+```
