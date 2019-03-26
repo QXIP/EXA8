@@ -19,3 +19,16 @@
 ```
 
 For full and updated specs, please visit [http://cubro.org](http://cubro.org)
+
+-----------
+
+### Storage
+The EXA8 Provides several storage options, with built-in USB and SDCard slots
+#### USB
+```
+mount /dev/mmcblk0p1 /mnt/usb
+```
+#### SD
+```
+mount /dev/sda1 /mnt/sdcard
+```
