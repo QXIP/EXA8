@@ -11,24 +11,13 @@ TMP_DIR="/tmp/$PROJECT_NAME"
 
 echo "Initiating builder..."
 apt update
-apt -y install git wget curl sudo
-
-cd /usr/local && \
-    curl -sLO https://dl.google.com/go/go1.10.4.linux-armv6l.tar.gz && \
-    tar xfz go1.10.4.linux-armv6l.tar.gz && \
-    rm go1.10.4.linux-armv6l.tar.gz && \
-    cd /root && \
-    mkdir -p go/bin go/pkg
-
-GOROOT="/usr/local/go"
-GOPATH="/root/go"
-PATH="${GOROOT}/bin:${PATH}"
-PATH="${GOPATH}/bin:${PATH}"
-
+apt -y install git wget curl sudo golang
 go version
 
-exit 1;
+echo "Go get... "
+go get github.com/google/stenographer
 
+echo "Compiling... "
 cd /usr/src
 git clone https://github.com/google/stenographer
 cd stenographer
@@ -54,5 +43,4 @@ fpm -s dir -t deb -C ${TMP_DIR} \
 
 ls -alF *.deb
 cp -v *.deb ${TMP_DIR}
-
 
