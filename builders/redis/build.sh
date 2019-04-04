@@ -72,6 +72,6 @@ fpm -s dir -t deb -C ${TMP_DIR} \
 	--iteration 1 --deb-no-default-config-files --description ${PROJECT_NAME} .
 
 ls -alF *.deb
-cp -v *.deb ${TMP_DIR}
+cp -v *.deb /scripts
 
 
