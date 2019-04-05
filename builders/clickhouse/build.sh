@@ -48,6 +48,7 @@ fi
 mkdir $TMP_DIR
 DESTDIR=$TMP_DIR make install
 
+
 apt-get -y install ruby ruby-dev rubygems build-essential
 gem install --no-ri --no-rdoc fpm
 
