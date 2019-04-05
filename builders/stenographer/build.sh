@@ -8,10 +8,15 @@ VERSION_MAJOR="1.0"
 VERSION_MINOR="0"
 PROJECT_NAME="stenographer"
 TMP_DIR="/tmp/$PROJECT_NAME"
+GO="1.10"
 
 echo "Initiating builder..."
 apt update
-apt -y install git wget curl sudo golang
+apt -y install git wget curl sudo golang-$GO
+
+export GOROOT=/usr/lib/go-$GO
+export GOPATH=/usr/src
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 go version
 
 echo "Go get... "
