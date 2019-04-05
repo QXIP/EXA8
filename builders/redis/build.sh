@@ -25,7 +25,7 @@ make
 if [ $? -eq 0 ]
 then
      mkdir "$TMP_DIR"
-     DEST=${TMP_DIR} make install
+     make DESTDIR=${TMP_DIR} install
 else
     echo "Make Failed! Exiting..."
     exit 1;

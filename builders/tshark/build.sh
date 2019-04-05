@@ -24,7 +24,7 @@ cd build
 cmake -DBUILD_wireshark=0 ../
 
 make
-DESTDIR=$TMP_DIR make install
+make DESTDIR=$TMP_DIR install
 
 if [ $? -eq 0 ]
 then
