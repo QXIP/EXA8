@@ -47,21 +47,7 @@ pushd stenotype
 make
 popd
 
-set +e
-Info "Killing aleady-running processes"
-sudo service stenographer stop
-ReallyKill stenographer
-ReallyKill stenotype
-set -e
-
-if ! id stenographer >/dev/null 2>&1; then
-  Info "Setting up stenographer user"
-  sudo adduser --system --no-create-home stenographer
-fi
-if ! getent group stenographer >/dev/null 2>&1; then
-  Info "Setting up stenographer group"
-  sudo addgroup --system stenographer
-fi
+Info "Installing to path: $ROOT"
 
 mkdir -p $ROOT/etc/security/limits.d
 if [ ! -f $ROOT/etc/security/limits.d/stenographer.conf ]; then
@@ -91,38 +77,28 @@ mkdir -p $ROOT/etc/stenographer
 if [ ! -d $ROOT/etc/stenographer/certs ]; then
   Info "Setting up stenographer /etc directory"
   sudo mkdir -p $ROOT/etc/stenographer/certs
-  sudo chown -R root:root $ROOT/etc/stenographer/certs
   if [ ! -f $ROOT/etc/stenographer/config ]; then
     sudo cp -vf configs/steno.conf $ROOT/etc/stenographer/config
-    sudo chown root:root $ROOT/etc/stenographer/config
     sudo chmod 644 $ROOT/etc/stenographer/config
   fi
-  sudo chown root:root $ROOT/etc/stenographer
 fi
 
-if grep -q /path/to $ROOT/etc/stenographer/config; then
-  Error "Create directories to output packets/indexes to, then update"
-  Error "/etc/stenographer/config to point to them."
-  Error "Directories should be owned by stenographer:stenographer."
-  exit 1
-fi
+mkdir -p $BINDIR/usr/bin
 
 sudo ./stenokeys.sh stenographer stenographer
 
 Info "Copying stenographer/stenotype"
 sudo cp -vf stenographer "$BINDIR/stenographer"
-sudo chown stenographer:root "$BINDIR/stenographer"
 sudo chmod 0700 "$BINDIR/stenographer"
 sudo cp -vf stenotype/stenotype "$BINDIR/stenotype"
-sudo chown stenographer:root "$BINDIR/stenotype"
 sudo chmod 0500 "$BINDIR/stenotype"
 SetCapabilities "$BINDIR/stenotype"
 
 Info "Copying stenoread/stenocurl"
 sudo cp -vf stenoread "$BINDIR/stenoread"
-sudo chown root:root "$BINDIR/stenoread"
 sudo chmod 0755 "$BINDIR/stenoread"
 sudo cp -vf stenocurl "$BINDIR/stenocurl"
-sudo chown root:root "$BINDIR/stenocurl"
 sudo chmod 0755 "$BINDIR/stenocurl"
 
+Info "Completed installing to $ROOT"
+ls -alF $ROOT

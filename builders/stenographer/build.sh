@@ -32,12 +32,14 @@ chmod +x install.sh
 export ROOT=$TMP_DIR
 ./install.sh
 
+ls -alF $TMP_DIR
+
 if [ $? -eq 0 ]
 then
     echo "Proceeding to packaging..."
 else
     echo "Failed! Exiting..."
-    exit 1;
+    #exit 1;
 fi
 
 apt-get -y install ruby ruby-dev rubygems build-essential
@@ -50,3 +52,4 @@ fpm -s dir -t deb -C ${TMP_DIR} \
 ls -alF *.deb
 cp -v *.deb /scripts
 
+echo "done!"
