@@ -29,44 +29,35 @@ set -e
 Info "Making sure we have sudo access"
 sudo cat /dev/null
 
-InstallPackage libaio-dev
-InstallPackage libleveldb-dev
-InstallPackage libsnappy-dev
-InstallPackage g++
-InstallPackage libcap2-bin
-InstallPackage libseccomp-dev
-InstallPackage jq
-InstallPackage openssl
+apt install -y libaio-dev
+apt install -y libleveldb-dev
+apt install -y libsnappy-dev
+apt install -y g++
+apt install -y libcap2-bin
+apt install -y libseccomp-dev
+apt install -y jq
+apt install -y openssl
 
 Info "Building stenographer"
-go build
+go get -v
+go build -v
+
 
 Info "Building stenotype"
 pushd stenotype
 make
 popd
 
+Info "Installing to path: $ROOT"
 set +e
-Info "Killing aleady-running processes"
-sudo service stenographer stop
-ReallyKill stenographer
-ReallyKill stenotype
-set -e
 
-if ! id stenographer >/dev/null 2>&1; then
-  Info "Setting up stenographer user"
-  sudo adduser --system --no-create-home stenographer
-fi
-if ! getent group stenographer >/dev/null 2>&1; then
-  Info "Setting up stenographer group"
-  sudo addgroup --system stenographer
-fi
-
+mkdir -p $ROOT/etc/security/limits.d
 if [ ! -f $ROOT/etc/security/limits.d/stenographer.conf ]; then
   Info "Setting up stenographer limits"
   sudo cp -v configs/limits.conf $ROOT/etc/security/limits.d/stenographer.conf
 fi
 
+mkdir -p $ROOT/etc/init
 if [ -d $ROOT/etc/init/ ]; then
   if [ ! -f $ROOT/etc/init/stenographer.conf ]; then
     Info "Setting up stenographer upstart config"
@@ -75,6 +66,7 @@ if [ -d $ROOT/etc/init/ ]; then
   fi
 fi
 
+mkdir -p $ROOT/lib/systemd/system
 if [ -d $ROOT/lib/systemd/system/ ]; then
   if [ ! -f $ROOT/lib/systemd/system/stenographer.service ]; then
     Info "Setting up stenographer systemd config"
@@ -83,62 +75,33 @@ if [ -d $ROOT/lib/systemd/system/ ]; then
   fi
 fi
 
+mkdir -p $ROOT/etc/stenographer
 if [ ! -d $ROOT/etc/stenographer/certs ]; then
   Info "Setting up stenographer /etc directory"
   sudo mkdir -p $ROOT/etc/stenographer/certs
-  sudo chown -R root:root $ROOT/etc/stenographer/certs
   if [ ! -f $ROOT/etc/stenographer/config ]; then
     sudo cp -vf configs/steno.conf $ROOT/etc/stenographer/config
-    sudo chown root:root $ROOT/etc/stenographer/config
     sudo chmod 644 $ROOT/etc/stenographer/config
   fi
-  sudo chown root:root $ROOT/etc/stenographer
 fi
 
-if grep -q /path/to $ROOT/etc/stenographer/config; then
-  Error "Create directories to output packets/indexes to, then update"
-  Error "/etc/stenographer/config to point to them."
-  Error "Directories should be owned by stenographer:stenographer."
-  exit 1
-fi
+mkdir -p $BINDIR/usr/bin
+
 
 sudo ./stenokeys.sh stenographer stenographer
 
 Info "Copying stenographer/stenotype"
 sudo cp -vf stenographer "$BINDIR/stenographer"
-sudo chown stenographer:root "$BINDIR/stenographer"
 sudo chmod 0700 "$BINDIR/stenographer"
 sudo cp -vf stenotype/stenotype "$BINDIR/stenotype"
-sudo chown stenographer:root "$BINDIR/stenotype"
 sudo chmod 0500 "$BINDIR/stenotype"
 SetCapabilities "$BINDIR/stenotype"
 
 Info "Copying stenoread/stenocurl"
 sudo cp -vf stenoread "$BINDIR/stenoread"
-sudo chown root:root "$BINDIR/stenoread"
 sudo chmod 0755 "$BINDIR/stenoread"
 sudo cp -vf stenocurl "$BINDIR/stenocurl"
-sudo chown root:root "$BINDIR/stenocurl"
 sudo chmod 0755 "$BINDIR/stenocurl"
 
-Info "Starting stenographer using upstart"
-# If you're not using upstart, you can replace this with:
-#   sudo -b -u stenographer $BINDIR/stenographer &
-sudo service stenographer start
-
-Info "Checking for running processes..."
-sleep 5
-if Running stenographer; then
-  Info "  * Stenographer up and running"
-else
-  Error "  !!! Stenographer not running !!!"
-  tail -n 100 /var/log/messages | grep steno
-  exit 1
-fi
-if Running stenotype; then
-  Info "  * Stenotype up and running"
-else
-  Error "  !!! Stenotype not running !!!"
-  tail -n 100 /var/log/messages | grep steno
-  exit 1
-fi
+Info "Completed installing to $ROOT"
+ls -alF $ROOT

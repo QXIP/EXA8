@@ -14,8 +14,9 @@ echo "Initiating builder..."
 apt update
 apt -y install git wget curl sudo golang-$GO
 
+export GOARCH=arm64
 export GOROOT=/usr/lib/go-$GO
-export GOPATH=/usr/src
+export GOPATH=/usr
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 go version
 
@@ -36,7 +37,7 @@ then
     echo "Proceeding to packaging..."
 else
     echo "Failed! Exiting..."
-    exit 1;
+    #exit 1;
 fi
 
 apt-get -y install ruby ruby-dev rubygems build-essential
@@ -47,5 +48,6 @@ fpm -s dir -t deb -C ${TMP_DIR} \
 	--iteration 1 --deb-no-default-config-files --description ${PROJECT_NAME} .
 
 ls -alF *.deb
-cp -v *.deb ${TMP_DIR}
+cp -v *.deb /scripts
 
+echo "done!"
