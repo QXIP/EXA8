@@ -34,7 +34,7 @@ cd dpdk-stable-18.05.1
 
 make config T=arm64-armv8a-linuxapp-gcc
 # CAVIUM: make config T=arm64-thunderx-linux-gcc
-make -j C EXTRA_CFLAGS="-isystem /usr/numactl/include" EXTRA_LDFLAGS="-L/usr/numactl/lib -lnuma" CONFIG_RTE_KNI_KMOD=n CONFIG_RTE_EAL_IGB_UIO=n
+make -j EXTRA_CFLAGS="-isystem /usr/numactl/include" EXTRA_LDFLAGS="-L/usr/numactl/lib -lnuma" CONFIG_RTE_KNI_KMOD=n CONFIG_RTE_EAL_IGB_UIO=n
 # make -j CONFIG_RTE_KNI_KMOD=n CONFIG_RTE_EAL_IGB_UIO=n EXTRA_CFLAGS="-isystem /usr/numactl/include" EXTRA_LDFLAGS="-L/usr/numactl/lib -lnuma"
 
 export RTE_SDK=$PWD
@@ -56,8 +56,9 @@ mkdir "$TMP_DIR"
 make DESTDIR=${TMP_DIR} install
 
 mkdir "$TMP_DIR"-sdk
-mkdir -p "$TMP_DIR"-sdk/usr/share
-cp -r dpdk-stable-18.05.1 "$TMP_DIR"-sdk/usr/share/dpdk
+mkdir -p "$TMP_DIR"-sdk/usr/share/dpdk
+make clean
+cp -r ./* "$TMP_DIR"-sdk/usr/share/dpdk/
 
 apt-get -y install ruby ruby-dev rubygems build-essential
 gem install --no-ri --no-rdoc fpm
