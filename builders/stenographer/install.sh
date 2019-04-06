@@ -29,17 +29,18 @@ set -e
 Info "Making sure we have sudo access"
 sudo cat /dev/null
 
-InstallPackage libaio-dev
-InstallPackage libleveldb-dev
-InstallPackage libsnappy-dev
-InstallPackage g++
-InstallPackage libcap2-bin
-InstallPackage libseccomp-dev
-InstallPackage jq
-InstallPackage openssl
+apt install -y libaio-dev
+apt install -y libleveldb-dev
+apt install -y libsnappy-dev
+apt install -y g++
+apt install -y libcap2-bin
+apt install -y libseccomp-dev
+apt install -y jq
+apt install -y openssl
 
 Info "Building stenographer"
-go build
+go get -v
+go build -v
 
 Info "Building stenotype"
 pushd stenotype
@@ -62,11 +63,13 @@ if ! getent group stenographer >/dev/null 2>&1; then
   sudo addgroup --system stenographer
 fi
 
+mkdir -p $ROOT/etc/security/limits.d
 if [ ! -f $ROOT/etc/security/limits.d/stenographer.conf ]; then
   Info "Setting up stenographer limits"
   sudo cp -v configs/limits.conf $ROOT/etc/security/limits.d/stenographer.conf
 fi
 
+mkdir -p $ROOT/etc/init
 if [ -d $ROOT/etc/init/ ]; then
   if [ ! -f $ROOT/etc/init/stenographer.conf ]; then
     Info "Setting up stenographer upstart config"
@@ -75,6 +78,7 @@ if [ -d $ROOT/etc/init/ ]; then
   fi
 fi
 
+mkdir -p $ROOT/lib/systemd/system
 if [ -d $ROOT/lib/systemd/system/ ]; then
   if [ ! -f $ROOT/lib/systemd/system/stenographer.service ]; then
     Info "Setting up stenographer systemd config"
@@ -83,6 +87,7 @@ if [ -d $ROOT/lib/systemd/system/ ]; then
   fi
 fi
 
+mkdir -p $ROOT/etc/stenographer
 if [ ! -d $ROOT/etc/stenographer/certs ]; then
   Info "Setting up stenographer /etc directory"
   sudo mkdir -p $ROOT/etc/stenographer/certs
@@ -121,24 +126,3 @@ sudo cp -vf stenocurl "$BINDIR/stenocurl"
 sudo chown root:root "$BINDIR/stenocurl"
 sudo chmod 0755 "$BINDIR/stenocurl"
 
-Info "Starting stenographer using upstart"
-# If you're not using upstart, you can replace this with:
-#   sudo -b -u stenographer $BINDIR/stenographer &
-sudo service stenographer start
-
-Info "Checking for running processes..."
-sleep 5
-if Running stenographer; then
-  Info "  * Stenographer up and running"
-else
-  Error "  !!! Stenographer not running !!!"
-  tail -n 100 /var/log/messages | grep steno
-  exit 1
-fi
-if Running stenotype; then
-  Info "  * Stenotype up and running"
-else
-  Error "  !!! Stenotype not running !!!"
-  tail -n 100 /var/log/messages | grep steno
-  exit 1
-fi

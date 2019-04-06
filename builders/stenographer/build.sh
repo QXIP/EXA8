@@ -8,19 +8,20 @@ VERSION_MAJOR="1.0"
 VERSION_MINOR="0"
 PROJECT_NAME="stenographer"
 TMP_DIR="/tmp/$PROJECT_NAME"
-GO="1.9"
+GO="1.10"
 
 echo "Initiating builder..."
 apt update
 apt -y install git wget curl sudo golang-$GO
 
+export GOARCH=arm64
 export GOROOT=/usr/lib/go-$GO
-export GOPATH=/usr/src
+export GOPATH=/usr
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 go version
 
 echo "Go get... "
-go get github.com/google/stenographer
+go get github.com/google/stenographer -v
 
 echo "Compiling... "
 cd /usr/src
