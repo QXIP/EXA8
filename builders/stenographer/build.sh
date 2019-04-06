@@ -21,7 +21,7 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 go version
 
 echo "Go get... "
-go get github.com/google/stenographer -v
+go get github.com/google/stenographer
 
 echo "Compiling... "
 cd /usr/src
@@ -31,8 +31,6 @@ cp /scripts/install.sh ./
 chmod +x install.sh
 export ROOT=$TMP_DIR
 ./install.sh
-
-ls -alF $TMP_DIR
 
 if [ $? -eq 0 ]
 then
