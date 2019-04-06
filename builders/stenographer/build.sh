@@ -8,7 +8,7 @@ VERSION_MAJOR="1.0"
 VERSION_MINOR="0"
 PROJECT_NAME="stenographer"
 TMP_DIR="/tmp/$PROJECT_NAME"
-GO="1.10"
+GO="1.9"
 
 echo "Initiating builder..."
 apt update
@@ -47,5 +47,5 @@ fpm -s dir -t deb -C ${TMP_DIR} \
 	--iteration 1 --deb-no-default-config-files --description ${PROJECT_NAME} .
 
 ls -alF *.deb
-cp -v *.deb ${TMP_DIR}
+cp -v *.deb /scripts
 
