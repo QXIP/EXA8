@@ -25,7 +25,7 @@ make
 if [ $? -eq 0 ]
 then
      mkdir "$TMP_DIR"
-     make DESTDIR=${TMP_DIR} install
+     make PREFIX=${TMP_DIR} install
 else
     echo "Make Failed! Exiting..."
     exit 1;
@@ -38,6 +38,7 @@ cp /usr/src/redis-stable/redis.conf $TMP_DIR/etc/redis
 sed -i -e 's/supervised no/supervised systemd/g' $TMP_DIR/etc/redis/redis.conf
 sed -i -e 's/dir .\//dir \/var\/lib\/redis/g' $TMP_DIR/etc/redis/redis.conf
 
+mkdir -p $TMP_DIR/etc/systemd/system
 echo "[Unit]
 Description=Redis In-Memory Data Store
 After=network.target
