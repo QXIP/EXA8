@@ -42,12 +42,14 @@ Info "Building stenographer"
 go get -v
 go build -v
 
+
 Info "Building stenotype"
 pushd stenotype
 make
 popd
 
 Info "Installing to path: $ROOT"
+set +e
 
 mkdir -p $ROOT/etc/security/limits.d
 if [ ! -f $ROOT/etc/security/limits.d/stenographer.conf ]; then
@@ -84,6 +86,7 @@ if [ ! -d $ROOT/etc/stenographer/certs ]; then
 fi
 
 mkdir -p $BINDIR/usr/bin
+
 
 sudo ./stenokeys.sh stenographer stenographer
 
