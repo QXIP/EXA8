@@ -6,7 +6,7 @@ ARCH="arm64"
 INTERCEPTION=0
 VERSION_MAJOR="0.9"
 VERSION_MINOR="2"
-PROJECT_NAME="KeyDB"
+PROJECT_NAME="keydb"
 TMP_DIR="/tmp/$PROJECT_NAME"
 
 echo "Initiating builder..."
@@ -27,8 +27,8 @@ make
 
 if [ $? -eq 0 ]
 then
-     mkdir "$TMP_DIR"
-     DESTDIR=${TMP_DIR} make install
+     mkdir -p "$TMP_DIR"
+     make PREFIX=${TMP_DIR} DESTDIR=${TMP_DIR} install
 else
     echo "Make Failed! Exiting..."
     exit 1;

@@ -45,8 +45,8 @@ else
 #    exit 1;
 fi
 
-mkdir $TMP_DIR
-DESTDIR=$TMP_DIR make install
+mkdir -p $TMP_DIR
+make DESTDIR=$TMP_DIR install
 
 
 apt-get -y install ruby ruby-dev rubygems build-essential
@@ -57,6 +57,6 @@ fpm -s dir -t deb -C ${TMP_DIR} \
 	--iteration 1 --deb-no-default-config-files --description ${PROJECT_NAME} .
 
 ls -alF *.deb
-cp -v *.deb ${TMP_BUILD}
+cp -v *.deb /scripts
 
 

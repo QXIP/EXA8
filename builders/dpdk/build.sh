@@ -16,15 +16,6 @@ apt -y install git wget curl build-essential automake autoconf libtool
 cd /usr/src
 
 echo "Installing numactl..."
-#git clone https://github.com/numactl/numactl.git
-#cd numactl
-#git checkout v2.0.11 -b v2.0.11
-#./autogen.sh
-#autoconf -i
-#./configure --host=aarch64-linux-gnu CC=aarch64-linux-gnu-gcc --prefix=/usr/numactl
-# CAVIUM: --host=aarch64-thunderx-linux CC=aarch64-thunderx-linux-gnu-gcc
-#make && make install
-#cd ..
 apt -y install libnuma-dev
 
 echo "Initiating dpdk..."
@@ -34,7 +25,7 @@ cd dpdk-stable-18.05.1
 
 make config T=arm64-armv8a-linuxapp-gcc
 # CAVIUM: make config T=arm64-thunderx-linux-gcc
-make -j EXTRA_CFLAGS="-isystem /usr/numactl/include" EXTRA_LDFLAGS="-L/usr/numactl/lib -lnuma" CONFIG_RTE_KNI_KMOD=n CONFIG_RTE_EAL_IGB_UIO=n
+make -j EXTRA_CFLAGS="-isystem /usr/numactl/include" EXTRA_LDFLAGS="-L/usr/numactl/lib -lnuma" CONFIG_RTE_KNI_KMOD=n CONFIG_RTE_EAL_IGB_UIO=n CONFIG_RTE_LIBRTE_PMD_PCAP=y CONFIG_RTE_LIBRTE_PDUMP=y
 # make -j CONFIG_RTE_KNI_KMOD=n CONFIG_RTE_EAL_IGB_UIO=n EXTRA_CFLAGS="-isystem /usr/numactl/include" EXTRA_LDFLAGS="-L/usr/numactl/lib -lnuma"
 
 export RTE_SDK=$PWD
