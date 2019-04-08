@@ -15,6 +15,8 @@ The Cubro EXA8 ships with the flagship sub-millisecond passive Bridge, verticall
 
 *NOTE: When running in BYPASS mode, no packets will be visible by the integrated platform!*
 
+##### PASSIVE
+Unless otherwise configured, the EXA8 will bridge passively its G1-8 interfaces vertically stacked
 
 
 #### Enable/Disable Bypass Mode
@@ -46,7 +48,7 @@ gpioset 34 set 1
 gpioset 35 set 1
 ```
 
-## ACTIVE
+##### ACTIVE
 When BYPASS mode is disabled, the integrated system can be configured to handle packets.
 
 The following examples illustrates a simple bridge between interfaces `lan1` and `lan2` with sniffing capabilities
@@ -54,6 +56,9 @@ The following examples illustrates a simple bridge between interfaces `lan1` and
 <img src=https://user-images.githubusercontent.com/1423657/54088541-56e03880-435f-11e9-9a7b-2722fc14c293.png width=200>
 
 *NOTE: Any interface and GPIO changes should be applied on each boot to avoid bypass default mode!* 
+
+
+## NETWORKING
 
 ###### Logical Interface (manual, legacy)
 
