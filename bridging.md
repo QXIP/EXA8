@@ -55,8 +55,17 @@ The following examples illustrates a simple bridge between interfaces `lan1` and
 
 *NOTE: Any interface and GPIO changes should be applied on each boot to avoid bypass default mode!* 
 
-###### Logical Interface
-The interface `enp5s0f1` is the logical interface to the CPU. It needs to be UP to enable any traffic flow. 
+###### Logical Interface (manual, legacy)
+
+The following chapter requires the legacy kernel modules for the EXA8 available [here](https://github.com/QXIP/EXA8/tree/master/binaries)
+```
+cp /lib/modules/4.14.11-svn258/kernel/drivers/net/dsa/mv88e6xxx/mv88e6xxx.ko /root/mv88e6xxx.ko.backup
+cp mv88e6xxx.ko /lib/modules/4.14.11-svn258/kernel/drivers/net/dsa/mv88e6xxx/mv88e6xxx.ko
+```
+
+------------
+
+The interface `enp5s0f1` is the logical interface to the CPU. It needs to be UP to enable any traffic flow on `lan` IFs
 ```
 ifconfig enp5s0f1 up
 ```
