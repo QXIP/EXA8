@@ -7,7 +7,7 @@ INTERCEPTION=0
 VERSION_MAJOR="0.9"
 VERSION_MINOR="2"
 PROJECT_NAME="keydb"
-TMP_DIR="/tmp/$PROJECT_NAME"
+TMP_DIR="/mnt/sda/tmp/$PROJECT_NAME"
 
 echo "Initiating builder..."
 apt update
