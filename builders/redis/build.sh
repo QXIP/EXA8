@@ -7,7 +7,7 @@ INTERCEPTION=0
 VERSION_MAJOR="0.9"
 VERSION_MINOR="2"
 PROJECT_NAME="redis"
-TMP_DIR="/tmp/$PROJECT_NAME"
+TMP_DIR="/mnt/sda/tmp/$PROJECT_NAME"
 
 echo "Initiating builder..."
 apt update
@@ -73,6 +73,6 @@ fpm -s dir -t deb -C ${TMP_DIR} \
 	--iteration 1 --deb-no-default-config-files --description ${PROJECT_NAME} .
 
 ls -alF *.deb
-cp -v *.deb /scripts
+cp -v *.deb /scripts/
 
 
