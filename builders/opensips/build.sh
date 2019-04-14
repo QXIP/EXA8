@@ -18,11 +18,10 @@ apt-get update -qq && apt-get install -y build-essential \
 
 cd /usr/src
 git clone https://github.com/OpenSIPS/opensips.git -b $VERSION opensips_$VERSION
-cd opensips_$VERSION && make all && make install
-
-
+cd opensips_$VERSION
 mkdir "$TMP_DIR"
-make install ${TMP_DIR}
+make prefix=${TMP_DIR} all
+make prefix=${TMP_DIR} install
 
 if [ $? -eq 0 ]
 then
@@ -40,6 +39,6 @@ fpm -s dir -t deb -C ${TMP_DIR} \
 	--iteration 1 --deb-no-default-config-files --description ${PROJECT_NAME} .
 
 ls -alF *.deb
-cp -v *.deb ${TMP_DIR}
+cp -v *.deb /scripts/
 
 

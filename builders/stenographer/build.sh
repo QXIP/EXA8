@@ -45,6 +45,7 @@ gem install --no-ri --no-rdoc fpm
 
 fpm -s dir -t deb -C ${TMP_DIR} \
 	--name ${PROJECT_NAME} --version ${VERSION_MAJOR}  -p "${PROJECT_NAME}_${VERSION_MAJOR}-${INV}.${OS}.${ARCH}.deb" \
+	--depends libleveldb-dev \
 	--iteration 1 --deb-no-default-config-files --description ${PROJECT_NAME} .
 
 ls -alF *.deb
