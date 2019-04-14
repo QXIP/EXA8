@@ -87,8 +87,9 @@ fi
 
 mkdir -p $BINDIR/usr/bin
 
-
 sudo ./stenokeys.sh stenographer stenographer
+sudo cp -vfR /etc/stenographer/certs $ROOT/etc/stenographer/
+
 
 Info "Copying stenographer/stenotype"
 sudo cp -vf stenographer "$BINDIR/stenographer"
