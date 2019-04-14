@@ -33,9 +33,13 @@ apt install tshark
 ### Supported Languages
 #### GO
 ```
-sudo add-apt-repository ppa:gophers/archive
 sudo apt-get update
-sudo apt-get install golang-1.9
+sudo apt-get install golang-1.10
+```
+```
+export GOROOT=/usr/lib/go-1.10
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
 ```
 
 #### NodeJS

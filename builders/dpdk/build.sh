@@ -16,6 +16,17 @@ apt -y install git wget curl build-essential automake autoconf libtool
 cd /usr/src
 
 echo "Installing numactl..."
+
+#git clone https://github.com/numactl/numactl.git
+#cd numactl
+#git checkout v2.0.11 -b v2.0.11
+#./autogen.sh
+#autoconf -i
+#./configure --host=aarch64-linux-gnu CC=aarch64-linux-gnu-gcc --prefix=/usr/numactl
+# CAVIUM: --host=aarch64-thunderx-linux CC=aarch64-thunderx-linux-gnu-gcc
+#make && make install
+#cd ..
+
 apt -y install libnuma-dev
 
 echo "Initiating dpdk..."
@@ -50,6 +61,7 @@ mkdir "$TMP_DIR"-sdk
 mkdir -p "$TMP_DIR"-sdk/usr/share/dpdk
 make clean
 cp -r ./* "$TMP_DIR"-sdk/usr/share/dpdk/
+
 
 apt-get -y install ruby ruby-dev rubygems build-essential
 gem install --no-ri --no-rdoc fpm

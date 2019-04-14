@@ -12,13 +12,17 @@ QXIP maintains and distributes software and packages for the [EXA8](http://cubro
 
 ## Links & How-Tos
 ### INSTALLING SOFTWARE
-See [Repository Setup](https://github.com/lmangani/EXA8/blob/master/software.md)
+* See [Repository Setup](https://github.com/lmangani/EXA8/blob/master/software.md)
+* See [Packages](https://github.com/QXIP/EXA8/tree/master/packages)
+
 ### NETWORKING
-See [Bridging Options](https://github.com/lmangani/EXA8/blob/master/bridging.md)
+* See [Bridging Options](https://github.com/lmangani/EXA8/blob/master/bridging.md)
+
 ### HARDWARE
-See [Hardware Specs](https://github.com/lmangani/EXA8/blob/master/hardware.md)
+* See [Hardware Specs](https://github.com/lmangani/EXA8/blob/master/hardware.md)
+
 ### DEVELOPERS
-See [Cross-Compilation and Development](https://github.com/lmangani/EXA8/blob/master/crosscompile.md)
+* See [Cross-Compilation and Development](https://github.com/lmangani/EXA8/blob/master/crosscompile.md)
 
 ------
 
