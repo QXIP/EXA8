@@ -1,0 +1,20 @@
+# nfpm example config file
+name: "nfpm"
+arch: "arm64"
+platform: "linux"
+version: "v0.11.0"
+section: "default"
+priority: "extra"
+replaces:
+- nfpm
+provides:
+- nfpm
+maintainer: "Lorenzo Mangani <lorenzo.mangani@gmail.com>"
+description: |
+  NFPM is Not FPM - a simple deb and rpm packager written in Go
+vendor: "goreleaser"
+homepage: "http://github.com/goreleaser/nfpm"
+license: "MIT"
+bindir: "/usr/local/bin"
+files:
+  ./nfpm: "/usr/local/bin/nfpm"
