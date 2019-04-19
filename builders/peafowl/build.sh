@@ -14,6 +14,8 @@ apt update
 apt -y install git wget curl
 apt -y install build-essential automake autoconf libpcap0.8-dev flex bison cmake python python-dev
 
+mkdir =p "$TMP_DIR"
+
 cd /usr/src
 git clone git://github.com/DanieleDeSensi/Peafowl.git
 
@@ -21,11 +23,15 @@ echo "Compiling $PROJECT_NAME ..."
 cd Peafowl
 mkdir build
 cd build
-cmake ../
+cmake -DCMAKE_INSTALL_PREFIX=${TMP_DIR} ../
+#cmake ../
 make
+make install prefix=${TMP_DIR}
 
-mkdir "$TMP_DIR"
-make install ${TMP_DIR}
+mkdir -p ${TMP_DIR}/usr/include
+cp -R /usr/include/peafowl ${TMP_DIR}/usr/include/
+mkdir -p ${TMP_DIR}/usr/lib
+cp -R /usr/lib/libpeafowl* ${TMP_DIR}/usr/lib/
 
 if [ $? -eq 0 ]
 then
@@ -43,6 +49,6 @@ fpm -s dir -t deb -C ${TMP_DIR} \
 	--iteration 1 --deb-no-default-config-files --description ${PROJECT_NAME} .
 
 ls -alF *.deb
-cp -v *.deb ${TMP_DIR}
+cp -v *.deb /scripts/
 
 
