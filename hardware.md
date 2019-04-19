@@ -35,10 +35,11 @@ mount /dev/sda1 /mnt/sdcard
 
 ----------
 
-### Imaging
+### Root Filesystem
 
 ##### Create `rootfs`
 ```
+mkfs.ext4 /dev/mmcblk1p2
 mount /dev/mmcblk1p2 /mnt/rootfs
 cd /mnt/rootfs
 tar vczf /rootfs.tgz *
@@ -51,8 +52,8 @@ tar -xvf taskit-rootfs.tar -C /mnt/rootfs
 
 ----------
 
-### Flashing
-The EXA8 SOC is powered by UBOOT and can be managed throught the console connector
+### Flashing Media from U-Boot
+The EXA8 SOC is powered by U-Boot and can be managed throught the console connector
 
 *NOTE: The Boot procedure and init procedures can be stopped only through console!*
 
