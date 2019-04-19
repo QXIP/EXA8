@@ -32,3 +32,24 @@ mount /dev/mmcblk0p1 /mnt/usb
 ```
 mount /dev/sda1 /mnt/sdcard
 ```
+
+----------
+
+### Flashing
+The EXA8 SOC is powered by UBOOT and can be managed throught the console connector
+
+*NOTE: The Boot procedure and init procedures can be stopped only through console!*
+
+#### Boot from MMC
+To temporarily boot your OS from MMC w/o saving settings, use the following example:
+```
+setenv bootargs "bootargs=console=ttyAMA0,115200n8 earlycon=pl011,0x87e028000000 debug maxcpus=4 rootwait rw root=/dev/mmcblk0p2 coherent_pool=16M"
+boot
+```
+#### Boot from USB
+To temporarily boot your OS from USB w/o saving settings, use the following example:
+```
+setenv bootargs "bootargs=console=ttyAMA0,115200n8 earlycon=pl011,0x87e028000000 debug maxcpus=4 rootwait rw root=/dev/sda2 coherent_pool=16M"
+boot
+```
+
