@@ -13,7 +13,7 @@
 1 x mini PCIe extender interface for WLAN or 4G modem
 1 x USB 2.0
 1 x USB 3.0 (SS)
-1 x USD interface for software upgrade
+1 x USB interface for software upgrade
 1 U half 19 “ metal housing
 1 x integrated single AC power
 ```
@@ -31,6 +31,22 @@ mount /dev/mmcblk0p1 /mnt/usb
 #### SD
 ```
 mount /dev/sda1 /mnt/sdcard
+```
+
+----------
+
+### Imaging
+
+##### Create `rootfs`
+```
+mount /dev/mmcblk1p2 /mnt/rootfs
+cd /mnt/rootfs
+tar vczf /rootfs.tgz *
+```
+##### Deploy `rootfs`
+```
+mount /dev/mmcblk1p2 /mnt/rootfs
+tar -xvf taskit-rootfs.tar -C /mnt/rootfs
 ```
 
 ----------
