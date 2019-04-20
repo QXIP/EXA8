@@ -29,7 +29,7 @@ The EXA8 Provides several storage options, with built-in USB and SDCard slots.
 
 #### SD-MMC
 ```
-mount /dev/mmcblk0p1 /mnt/mmvblk0p1
+mount /dev/mmcblk0p2 /mnt/mmvblk0p2
 ```
 #### USB
 ```
