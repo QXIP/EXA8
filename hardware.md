@@ -37,15 +37,17 @@ mount /dev/sda1 /mnt/sdcard
 
 ### Root Filesystem
 
-##### Create `rootfs`
+##### Backup OS
+Create your own `rootfs` tgz image as follows:
 ```
-mkfs.ext4 /dev/mmcblk1p2
 mount /dev/mmcblk1p2 /mnt/rootfs
 cd /mnt/rootfs
 tar vczf /rootfs.tgz *
 ```
-##### Deploy `rootfs`
+##### Restore OS
+Deploy `rootfs` to ext4 partition *(will destroy all data!)*
 ```
+mkfs.ext4 /dev/mmcblk1p2
 mount /dev/mmcblk1p2 /mnt/rootfs
 tar -xvf taskit-rootfs.tar -C /mnt/rootfs
 ```
