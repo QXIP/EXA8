@@ -6,6 +6,8 @@ The [CUBRO](http://www.cubro.com/) [EXA8](http://cubro.org) is a compact multi-a
 
 QXIP maintains and distributes software and packages for the [EXA8](http://cubro.org) [ARM64](https://github.com/lmangani/EXA8/blob/master/hardware.md) `ubuntu:xenial` platform and a number of useful guides and how-tos for users, developers and integrators.
 
+###### To order an EXA8 device contact sales *at* qxip *dot* net
+
 <br/>
 
 <img src="https://user-images.githubusercontent.com/1423657/54088970-e5ef4f80-4363-11e9-929f-d26cbc484fb8.png" width=500>
