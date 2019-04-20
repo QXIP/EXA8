@@ -23,19 +23,24 @@ For full and updated specs, please visit [http://cubro.org](http://cubro.org)
 -----------
 
 ### Storage
-The EXA8 Provides several storage options, with built-in USB and SDCard slots
+The EXA8 Provides several storage options, with built-in USB and SDCard slots.
+
+*Please check and confirm the actual device name before proceeding!*
+
+#### SD-MMC
+```
+mount /dev/mmcblk0p1 /mnt/mmvblk0p1
+```
 #### USB
 ```
-mount /dev/mmcblk0p1 /mnt/usb
-```
-#### SD
-```
-mount /dev/sda1 /mnt/sdcard
+mount /dev/sdb1 /mnt/sdb1
 ```
 
 ----------
 
 ### Root Filesystem
+*Please check and confirm the actual device name before proceeding!*
+
 
 ##### Backup OS
 Create your own `rootfs` tgz image as follows:
@@ -54,8 +59,8 @@ tar -xvf taskit-rootfs.tar -C /mnt/rootfs
 
 ----------
 
-### Flashing Media from U-Boot
-The EXA8 SOC is powered by U-Boot and can be managed throught the console connector
+### U-Boot
+The EXA8 SOC is powered by U-Boot and can easily be managed throught console port.
 
 *NOTE: The Boot procedure and init procedures can be stopped only through console!*
 
