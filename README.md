@@ -13,21 +13,23 @@ QXIP maintains and distributes software and packages for the [EXA8](http://cubro
 <img src="https://user-images.githubusercontent.com/1423657/54088970-e5ef4f80-4363-11e9-929f-d26cbc484fb8.png" width=500>
 
 ## Links & How-Tos
+### INITIAL SETUP
+* 
 ### INSTALLING SOFTWARE
-* See [Repository Setup](https://github.com/lmangani/EXA8/blob/master/software.md)
-* See [Packages](https://github.com/QXIP/EXA8/tree/master/packages)
+* [Repository Setup](https://github.com/lmangani/EXA8/blob/master/software.md) using APT package manager
+* [Manual Setup](https://github.com/QXIP/EXA8/tree/master/packages) using DPKG and packages
 
 ### NETWORKING
-* See [Bridging Options](https://github.com/lmangani/EXA8/blob/master/bridging.md) for Network Options
+* [Bridging Options](https://github.com/lmangani/EXA8/blob/master/bridging.md) for Network Options
 
 ### HARDWARE
-* See [Hardware Specs](https://github.com/lmangani/EXA8/blob/master/hardware.md) for Hardware Specs
+* [Hardware Specs](https://github.com/lmangani/EXA8/blob/master/hardware.md) for Hardware Specs
 
 ### STORAGE
-* See [Storage Specs](https://github.com/lmangani/EXA8/blob/master/storage.md) for Storage and Boot Options
+* [Storage Specs](https://github.com/lmangani/EXA8/blob/master/storage.md) for Storage and Boot Options
 
 ### DEVELOPERS
-* See [Cross-Compilation and Development](https://github.com/lmangani/EXA8/blob/master/crosscompile.md) for Developer Guides and Cross-Compilation
+* [Cross-Compilation and Development](https://github.com/lmangani/EXA8/blob/master/crosscompile.md) for Developer Guides and Cross-Compilation
 
 ------
 
