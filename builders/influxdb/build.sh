@@ -13,8 +13,11 @@ TMP_DIR="/tmp/$PROJECT_NAME"
 echo "Initiating builder..."
 
 
-apt-get update
-apt-get install -y golang-$GO git curl libpcap-dev
+apt update
+apt install -y software-properties-common
+add-apt-repository ppa:gophers/archive
+apt update
+apt  install -y golang-$GO git curl
 
 export GOARCH=arm64
 export GOROOT="/usr/lib/go-$GO"
