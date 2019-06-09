@@ -15,7 +15,7 @@ To order an Community Version or Commercial Version EXA8 device contact sales *a
 
 ## Links & How-Tos
 ### Wiki
-* [Get Started]https://github.com/QXIP/EXA8/wiki) with your EXA8
+* [Get Started](https://github.com/QXIP/EXA8/wiki) with your EXA8
 
 #### SOFTWARE
 * [Repository Setup](https://github.com/QXIP/EXA8/wiki/EXA8-Software) using APT package manager
