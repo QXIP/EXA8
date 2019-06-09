@@ -14,24 +14,24 @@ To order an Community Version or Commercial Version EXA8 device contact sales *a
 <img src="https://user-images.githubusercontent.com/1423657/54088970-e5ef4f80-4363-11e9-929f-d26cbc484fb8.png" width=500>
 
 ## Links & How-Tos
-### SETUP
-* [Get Started](https://github.com/lmangani/EXA8/blob/master/setup.md) with your EXA8
+### Wiki
+* [Get Started]https://github.com/QXIP/EXA8/wiki) with your EXA8
 
-### SOFTWARE
-* [Repository Setup](https://github.com/lmangani/EXA8/blob/master/software.md) using APT package manager
+#### SOFTWARE
+* [Repository Setup](https://github.com/QXIP/EXA8/wiki/EXA8-Software) using APT package manager
 * [Manual Setup](https://github.com/QXIP/EXA8/tree/master/packages) using DPKG and packages
 
-### NETWORKING
-* [Bridging Options](https://github.com/lmangani/EXA8/blob/master/bridging.md) for Network Options
+#### NETWORKING
+* [Bridging Options](https://github.com/QXIP/EXA8/wiki/EXA8-Network) for Network Options
 
-### HARDWARE
-* [Hardware Specs](https://github.com/lmangani/EXA8/blob/master/hardware.md) for Hardware Specs
+#### HARDWARE
+* [Hardware Specs](https://github.com/QXIP/EXA8/wiki/EXA8-Hardware) for Hardware Specs
 
-### STORAGE
-* [Storage Specs](https://github.com/lmangani/EXA8/blob/master/storage.md) for Storage and Boot Options
+#### STORAGE
+* [Storage Specs](https://github.com/QXIP/EXA8/wiki/EXA8-Storage) for Storage and Boot Options
 
-### DEVELOPERS
-* [Cross-Compilation and Development](https://github.com/lmangani/EXA8/blob/master/crosscompile.md) for Developer Guides and Cross-Compilation
+#### DEVELOPERS
+* [Cross-Compilation and Development](https://github.com/QXIP/EXA8/wiki/EXA8-Development) for Developer Guides and Cross-Compilation
 
 ------
 
