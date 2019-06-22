@@ -5,7 +5,7 @@ OS="xenial"
 ARCH="arm64"
 INTERCEPTION=0
 VERSION_MAJOR="0.9"
-VERSION_MINOR="2"
+VERSION_MINOR="3"
 PROJECT_NAME="redis"
 TMP_DIR="/mnt/sda/tmp/$PROJECT_NAME"
 
@@ -46,8 +46,8 @@ After=network.target
 [Service]
 User=redis
 Group=redis
-ExecStart=/usr/local/bin/redis-server /etc/redis/redis.conf
-ExecStop=/usr/local/bin/redis-cli shutdown
+ExecStart=/bin/redis-server /etc/redis/redis.conf
+ExecStop=/bin/redis-cli shutdown
 Restart=always
 
 [Install]
