@@ -5,8 +5,8 @@ OS="xenial"
 ARCH="arm64"
 INTERCEPTION=0
 VERSION_MAJOR="0.9"
-VERSION_MINOR="3"
-PROJECT_NAME="redis"
+VERSION_MINOR="4"
+PROJECT_NAME="redis-server"
 TMP_DIR="/mnt/sda/tmp/$PROJECT_NAME"
 
 echo "Initiating builder..."
@@ -57,6 +57,16 @@ echo "Create the Redis User, Group and Directories"
 mkdir -p $TMP_DIR/var/lib/redis
 chmod 770 $TMP_DIR/var/lib/redis
 
+mkdir -p $TMP_DIR/tmp/redis
+echo "#!/bin/bash
+      sudo adduser --system --group --no-create-home redis
+      sudo mkdir -p /var/lib/redis
+      sudo chown redis:redis /var/lib/redis
+      sudo systemctl enable redis
+      echo 'Redis Post-Install Done!'" > $TMP_DIR/tmp/redis/redis-init.sh
+chmod +x $TMP_DIR/tmp/redis/redis-init.sh
+
+
 if [ $? -eq 0 ]
 then
     echo "Proceeding to packaging..."
@@ -70,6 +80,7 @@ gem install --no-ri --no-rdoc fpm
 
 fpm -s dir -t deb -C ${TMP_DIR} \
 	--name ${PROJECT_NAME} --version ${VERSION_MAJOR}  -p "${PROJECT_NAME}_${VERSION_MAJOR}-${INV}.${OS}.${ARCH}.deb" \
+        --after-install ${TMP_DIR}/tmp/redis/redis-init.sh
 	--iteration 1 --deb-no-default-config-files --description ${PROJECT_NAME} .
 
 ls -alF *.deb
