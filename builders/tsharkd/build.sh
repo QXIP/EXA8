@@ -5,14 +5,17 @@ OS="xenial"
 ARCH="arm64"
 INTERCEPTION=0
 VERSION_MAJOR="3.0"
-VERSION_MINOR="0"
+VERSION_MINOR="2"
 PROJECT_NAME="sharkd"
 TMP_DIR=/tmp/$PROJECT_NAME
 
 echo "Initiating builder..."
 apt update
 apt -y install git wget curl python3
-apt -y install build-essential automake autoconf libglib2.0-dev libpcap0.8-dev flex bison cmake libgcrypt11-dev zlib1g-dev
+apt -y install build-essential automake autoconf libglib2.0-dev libpcap0.8-dev flex bison cmake libgcrypt11-dev zlib1g-dev libspandsp-dev
+
+curl -s https://packagecloud.io/install/repositories/qxip/cubro-pub/script.deb.sh | bash
+apt install libbcg729-dev libbcg729-0
 
 cd /usr/src
 git clone https://github.com/wireshark/wireshark
@@ -60,14 +63,6 @@ else
     exit 1;
 fi
 
-apt-get -y install ruby ruby-dev rubygems build-essential
-gem install --no-ri --no-rdoc fpm
+./package.sh
 
-fpm -s dir -t deb -C ${TMP_DIR} \
-	--name ${PROJECT_NAME} --version ${VERSION_PROJECT}  -p "${PROJECT_NAME}_${VERSION_MAJOR}-${INV}.${OS}.${ARCH}.deb" \
-	--iteration 1 --deb-no-default-config-files --description ${PROJECT_NAME} .
-
-ls -alF *.deb
-cp -v *.deb /scripts/
-
-
+echo "done!"
