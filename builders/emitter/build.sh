@@ -1,12 +1,12 @@
 #!/bin/bash
 
 GO="1.10"
-INV=1
+INV=2
 OS="xenial"
 ARCH="arm64"
 INTERCEPTION=0
 VERSION_MAJOR="2.678"
-VERSION_MINOR="0"
+VERSION_MINOR="1"
 PROJECT_NAME="emitter"
 TMP_DIR="/tmp/$PROJECT_NAME"
 
@@ -33,6 +33,8 @@ then
     echo "Proceeding to packaging..."
 	mkdir -p $TMP_DIR/usr/bin
 	cp emitter $TMP_DIR/usr/bin
+	mkdir -p $TMP_DIR/etc
+	cp emitter.conf $TMP_DIR/etc/emitter.conf
 else
     echo "Failed! Exiting..."
     exit 1;
@@ -42,7 +44,7 @@ apt-get -y install ruby ruby-dev rubygems build-essential
 gem install --no-ri --no-rdoc fpm
 
 fpm -s dir -t deb -C ${TMP_DIR} \
-	--name ${PROJECT_NAME} --version ${VERSION_MAJOR}  -p "${PROJECT_NAME}_${VERSION_MAJOR}-${INV}.${OS}.${ARCH}.deb" \
+	--name ${PROJECT_NAME} --version ${VERSION_MAJOR}  -p "${PROJECT_NAME}_${VERSION_MAJOR}.${VERSION_MINOR}-${INV}.${OS}.${ARCH}.deb" \
 	--iteration 1 --deb-no-default-config-files --description ${PROJECT_NAME} .
 
 ls -alF *.deb
