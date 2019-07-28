@@ -5,7 +5,7 @@ OS="xenial"
 ARCH="arm64"
 INTERCEPTION=0
 VERSION_MAJOR="0.9"
-VERSION_MINOR="4"
+VERSION_MINOR="5"
 PROJECT_NAME="redis-server"
 TMP_DIR="/mnt/sda/tmp/$PROJECT_NAME"
 
@@ -20,7 +20,7 @@ tar xzvf redis-stable.tar.gz
 cd redis-stable
 
 echo "Build and Install Redis"
-make
+make 
 
 if [ $? -eq 0 ]
 then
@@ -80,7 +80,7 @@ gem install --no-ri --no-rdoc fpm
 
 fpm -s dir -t deb -C ${TMP_DIR} \
 	--name ${PROJECT_NAME} --version ${VERSION_MAJOR}  -p "${PROJECT_NAME}_${VERSION_MAJOR}-${INV}.${OS}.${ARCH}.deb" \
-        --after-install ${TMP_DIR}/tmp/redis/redis-init.sh
+        --after-install ${TMP_DIR}/tmp/redis/redis-init.sh \
 	--iteration 1 --deb-no-default-config-files --description ${PROJECT_NAME} .
 
 ls -alF *.deb
