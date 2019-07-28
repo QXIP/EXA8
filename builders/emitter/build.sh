@@ -5,7 +5,7 @@ INV=2
 OS="xenial"
 ARCH="arm64"
 INTERCEPTION=0
-VERSION_MAJOR="2.678"
+VERSION_MAJOR="2.679"
 VERSION_MINOR="1"
 PROJECT_NAME="emitter"
 TMP_DIR="/tmp/$PROJECT_NAME"
@@ -35,6 +35,23 @@ then
 	cp emitter $TMP_DIR/usr/bin
 	mkdir -p $TMP_DIR/etc
 	cp emitter.conf $TMP_DIR/etc/emitter.conf
+	mkdir -p /etc/systemd/system
+	cat > /etc/systemd/system/emitter.service << EOL
+[Unit]
+Description=Emitter-io
+After=network.target
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=centos
+ExecStart=/usr/bin/emitter -c /etc/emitter.conf
+
+[Install]
+WantedBy=multi-user.target
+EOL
+
 else
     echo "Failed! Exiting..."
     exit 1;
